@@ -108,10 +108,13 @@ function Index() {
           <h2 className="text-4xl font-black md:text-5xl">Nossos serviços</h2>
           <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {services.map((s, i) => (
-              <div key={s.t} className="rounded border bg-card p-7">
-                <span className="font-display text-sm font-bold text-primary">0{i + 1}</span>
-                <h3 className="mt-6 text-2xl font-bold">{s.t}</h3>
-                <p className="mt-2 text-muted-foreground">{s.d}</p>
+              <div key={s.t} className="overflow-hidden rounded border bg-card">
+                <img src={s.img} alt={s.t} loading="lazy" className="w-full" />
+                <div className="p-7">
+                  <span className="font-display text-sm font-bold text-primary">0{i + 1}</span>
+                  <h3 className="mt-4 text-2xl font-bold">{s.t}</h3>
+                  <p className="mt-2 text-muted-foreground">{s.d}</p>
+                </div>
               </div>
             ))}
           </div>
