@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import hero from "@/assets/hero.jpg";
 import logoTopo from "@/assets/logo-topo.png.asset.json";
 import logoRodape from "@/assets/logo-rodape.png.asset.json";
@@ -50,9 +50,10 @@ function Index() {
           <a href="#" aria-label="Lavanderia Santa Tereza">
             <img src={logoTopo.url} alt="Logo Lavanderia Santa Tereza" className="h-14 w-auto" />
           </a>
-          <nav className="hidden gap-8 text-sm font-medium md:flex">
+          <nav className="hidden gap-6 text-sm font-medium md:flex">
             <a href="#sobre" className="hover:text-primary">Sobre</a>
             <a href="#servicos" className="hover:text-primary">Serviços</a>
+            <Link to="/clientes" className="hover:text-primary">Clientes</Link>
             <a href="#ambiental" className="hover:text-primary">Meio ambiente</a>
             <a href="#instagram" className="hover:text-primary">Instagram</a>
             <a href="#contato" className="hover:text-primary">Contato</a>
