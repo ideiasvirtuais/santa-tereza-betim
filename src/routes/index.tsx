@@ -3,6 +3,10 @@ import hero from "@/assets/hero.jpg";
 import logoTopo from "@/assets/logo-topo.png.asset.json";
 import logoRodape from "@/assets/logo-rodape.png.asset.json";
 import fachada from "@/assets/fachada.jpg.asset.json";
+import servUniformes from "@/assets/servico-uniformes.jpg.asset.json";
+import servCouros from "@/assets/servico-couros.jpg.asset.json";
+import servEpis from "@/assets/servico-epis.jpg.asset.json";
+import servLuvas from "@/assets/servico-luvas.jpg.asset.json";
 import equipe from "@/assets/equipe.jpg.asset.json";
 import reuniao from "@/assets/reuniao.jpg.asset.json";
 import material from "@/assets/reuniao-material.jpg.asset.json";
@@ -25,10 +29,10 @@ export const Route = createFileRoute("/")({
 });
 
 const services = [
-  { t: "Uniformes", d: "Higienização e reparos de uniformes profissionais." },
-  { t: "Couros", d: "Limpeza e restauração de peças em couro." },
-  { t: "EPIs e Botas", d: "Higienização segura de equipamentos de proteção." },
-  { t: "Luvas", d: "Nosso diferencial: luvas extremamente limpas e restauradas." },
+  { t: "Uniformes", d: "Higienização e reparos de uniformes profissionais.", img: servUniformes.url },
+  { t: "Couros", d: "Limpeza e restauração de peças em couro.", img: servCouros.url },
+  { t: "EPIs e Botas", d: "Higienização segura de equipamentos de proteção.", img: servEpis.url },
+  { t: "Luvas", d: "Nosso diferencial: luvas extremamente limpas e restauradas.", img: servLuvas.url },
 ];
 
 const eco = [
@@ -104,10 +108,13 @@ function Index() {
           <h2 className="text-4xl font-black md:text-5xl">Nossos serviços</h2>
           <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {services.map((s, i) => (
-              <div key={s.t} className="rounded border bg-card p-7">
-                <span className="font-display text-sm font-bold text-primary">0{i + 1}</span>
-                <h3 className="mt-6 text-2xl font-bold">{s.t}</h3>
-                <p className="mt-2 text-muted-foreground">{s.d}</p>
+              <div key={s.t} className="overflow-hidden rounded border bg-card">
+                <img src={s.img} alt={s.t} loading="lazy" className="w-full" />
+                <div className="p-7">
+                  <span className="font-display text-sm font-bold text-primary">0{i + 1}</span>
+                  <h3 className="mt-4 text-2xl font-bold">{s.t}</h3>
+                  <p className="mt-2 text-muted-foreground">{s.d}</p>
+                </div>
               </div>
             ))}
           </div>
