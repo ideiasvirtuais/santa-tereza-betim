@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import hero from "@/assets/hero.jpg";
-import logo from "@/assets/logo.jpg.asset.json";
+import logoTopo from "@/assets/logo-topo.png.asset.json";
+import logoRodape from "@/assets/logo-rodape.png.asset.json";
 import equipe from "@/assets/equipe.jpg.asset.json";
 import reuniao from "@/assets/reuniao.jpg.asset.json";
 import material from "@/assets/reuniao-material.jpg.asset.json";
@@ -42,7 +43,7 @@ function Index() {
       <header className="sticky top-0 z-20 border-b bg-background/90 backdrop-blur">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
           <a href="#" aria-label="Lavanderia Santa Tereza">
-            <img src={logo.url} alt="Logo Lavanderia Santa Tereza" className="h-12 w-auto" />
+            <img src={logoTopo.url} alt="Logo Lavanderia Santa Tereza" className="h-14 w-auto" />
           </a>
           <nav className="hidden gap-8 text-sm font-medium md:flex">
             <a href="#sobre" className="hover:text-primary">Sobre</a>
@@ -189,8 +190,9 @@ function Index() {
         </div>
       </section>
 
-      <footer className="bg-ink py-6 text-center text-sm text-ink-foreground opacity-90">
-        © {new Date().getFullYear()} Lavanderia Santa Tereza – Betim/MG
+      <footer className="bg-ink py-10 text-center text-sm text-ink-foreground">
+        <img src={logoRodape.url} alt="Logo Lavanderia Santa Tereza" className="mx-auto h-24 w-auto" />
+        <p className="mt-6 opacity-90">© {new Date().getFullYear()} Lavanderia Santa Tereza – Betim/MG</p>
       </footer>
     </div>
   );
