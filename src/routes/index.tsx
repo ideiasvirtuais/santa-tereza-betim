@@ -3,6 +3,10 @@ import hero from "@/assets/hero.jpg";
 import logoTopo from "@/assets/logo-topo.png.asset.json";
 import logoRodape from "@/assets/logo-rodape.png.asset.json";
 import fachada from "@/assets/fachada.jpg.asset.json";
+import servUniformes from "@/assets/servico-uniformes.jpg.asset.json";
+import servCouros from "@/assets/servico-couros.jpg.asset.json";
+import servEpis from "@/assets/servico-epis.jpg.asset.json";
+import servLuvas from "@/assets/servico-luvas.jpg.asset.json";
 import equipe from "@/assets/equipe.jpg.asset.json";
 import reuniao from "@/assets/reuniao.jpg.asset.json";
 import material from "@/assets/reuniao-material.jpg.asset.json";
@@ -25,10 +29,10 @@ export const Route = createFileRoute("/")({
 });
 
 const services = [
-  { t: "Uniformes", d: "Higienização e reparos de uniformes profissionais." },
-  { t: "Couros", d: "Limpeza e restauração de peças em couro." },
-  { t: "EPIs e Botas", d: "Higienização segura de equipamentos de proteção." },
-  { t: "Luvas", d: "Nosso diferencial: luvas extremamente limpas e restauradas." },
+  { t: "Uniformes", d: "Higienização e reparos de uniformes profissionais.", img: servUniformes.url },
+  { t: "Couros", d: "Limpeza e restauração de peças em couro.", img: servCouros.url },
+  { t: "EPIs e Botas", d: "Higienização segura de equipamentos de proteção.", img: servEpis.url },
+  { t: "Luvas", d: "Nosso diferencial: luvas extremamente limpas e restauradas.", img: servLuvas.url },
 ];
 
 const eco = [
