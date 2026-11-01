@@ -84,6 +84,7 @@ function Index() {
             estrutural e legalmente para atender grandes projetos.
           </p>
         </div>
+        <img src={fachada.url} alt="Fachada da Lavanderia Santa Tereza em Betim" loading="lazy" className="mt-12 w-full rounded" />
         <div className="mt-16 grid gap-px overflow-hidden rounded border bg-border md:grid-cols-3">
           {[
             ["Missão", "Prestar um serviço de qualidade na higienização e locação de materiais, com foco no cliente e atitudes sustentáveis."],
