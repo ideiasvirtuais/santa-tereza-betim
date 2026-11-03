@@ -3,6 +3,7 @@ import hero from "@/assets/hero.jpg";
 import logoTopo from "@/assets/logo-topo.png.asset.json";
 import logoRodape from "@/assets/logo-rodape.png.asset.json";
 import fachada from "@/assets/fachada.jpg.asset.json";
+import caminhao from "@/assets/caminhao.png.asset.json";
 import servUniformes from "@/assets/servico-uniformes-2.jpg.asset.json";
 import servCouros from "@/assets/servico-couros-2.jpg.asset.json";
 import servEpis from "@/assets/servico-epis-2.jpg.asset.json";
@@ -89,7 +90,10 @@ function Index() {
             estrutural e legalmente para atender grandes projetos.
           </p>
         </div>
-        <img src={fachada.url} alt="Fachada da Lavanderia Santa Tereza em Betim" loading="lazy" className="mt-12 w-full rounded" />
+        <div className="mt-12 grid items-center gap-8 md:grid-cols-[1.55fr_1fr]">
+          <img src={fachada.url} alt="Fachada da Lavanderia Santa Tereza em Betim" loading="lazy" className="w-full rounded" />
+          <img src={caminhao.url} alt="Caminhão da Lavanderia Santa Tereza" loading="lazy" className="mx-auto w-full max-w-md" />
+        </div>
         <div className="mt-16 grid gap-px overflow-hidden rounded border bg-border md:grid-cols-3">
           {[
             ["Missão", "Prestar um serviço de qualidade na higienização e locação de materiais, com foco no cliente e atitudes sustentáveis."],
