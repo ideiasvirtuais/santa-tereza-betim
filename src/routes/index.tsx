@@ -1,4 +1,4 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { createFileRoute } from "@tanstack/react-router";
 import hero from "@/assets/hero.jpg";
 import logoTopo from "@/assets/logo-topo.png";
 import logoRodape from "@/assets/logo-rodape.png";
@@ -11,6 +11,23 @@ import servLuvas from "@/assets/servico-luvas-2.jpg";
 import equipe from "@/assets/equipe.jpg";
 import reuniao from "@/assets/reuniao.jpg";
 import material from "@/assets/reuniao-material.jpg";
+import fpt from "@/assets/cliente-fpt.png";
+import magna from "@/assets/cliente-magna.png";
+import manserv from "@/assets/cliente-manserv.png";
+import mercadolivre from "@/assets/cliente-mercado-livre.png";
+import petrobras from "@/assets/cliente-petrobras.png";
+import stellantis from "@/assets/cliente-stellantis.png";
+import vale from "@/assets/cliente-vale.png";
+
+const clients = [
+  { name: "FPT", img: fpt },
+  { name: "Magna", img: magna },
+  { name: "Manserv", img: manserv },
+  { name: "Mercado Livre", img: mercadolivre },
+  { name: "Petrobras", img: petrobras },
+  { name: "Stellantis", img: stellantis },
+  { name: "Vale", img: vale },
+];
 
 const IG = "https://www.instagram.com/lavanderia.santatereza/";
 const LINKTREE = "https://linktr.ee/santaterezalavanderia";
@@ -54,7 +71,7 @@ function Index() {
           <nav className="hidden gap-6 text-sm font-medium md:flex">
             <a href="#sobre" className="hover:text-primary">Sobre</a>
             <a href="#servicos" className="hover:text-primary">Serviços</a>
-            <Link to="/clientes" className="hover:text-primary">Clientes</Link>
+            <a href="#clientes" className="hover:text-primary">Clientes</a>
             <a href="#ambiental" className="hover:text-primary">Meio ambiente</a>
             <a href="#instagram" className="hover:text-primary">Instagram</a>
             <a href="#contato" className="hover:text-primary">Contato</a>
@@ -123,6 +140,18 @@ function Index() {
               </div>
             ))}
           </div>
+        </div>
+      </section>
+
+      <section id="clientes" className="mx-auto max-w-6xl px-6 py-24">
+        <p className="mb-4 text-sm font-semibold uppercase tracking-[0.2em] text-primary">Quem confia na gente</p>
+        <h2 className="text-4xl font-black md:text-5xl">Alguns de nossos clientes</h2>
+        <div className="mt-12 grid grid-cols-2 gap-6 sm:grid-cols-3 lg:grid-cols-4">
+          {clients.map((c) => (
+            <div key={c.name} className="flex h-36 items-center justify-center rounded border bg-card p-6">
+              <img src={c.img} alt={c.name} loading="lazy" className="max-h-20 w-auto max-w-full object-contain" />
+            </div>
+          ))}
         </div>
       </section>
 
