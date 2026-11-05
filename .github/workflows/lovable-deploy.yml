@@ -48,6 +48,12 @@ jobs:
 
           RewriteEngine On
 
+          # Forcar HTTPS: todo acesso http vira https no mesmo endereco
+          # (a condicao extra evita laco de redirecionamento atras de proxy)
+          RewriteCond %{HTTPS} !=on
+          RewriteCond %{HTTP:X-Forwarded-Proto} !https
+          RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
+
           # SPA fallback: rotas inexistentes caem no _shell.html
           RewriteCond %{REQUEST_FILENAME} !-f
           RewriteCond %{REQUEST_FILENAME} !-d
@@ -67,6 +73,9 @@ jobs:
           </IfModule>
           HTACCESS
 
+      - name: "Gravar versao do deploy"
+        run: echo "${{ github.sha }}" > "${{ steps.locate-shell.outputs.deploy_dir }}/deploy-version.txt"
+
       - name: "Deploy para a Branch stable-website"
         uses: JamesIves/github-pages-deploy-action@v4
         with:
@@ -83,3 +92,21 @@ jobs:
           password: ${{ secrets.FTP_PASSWORD }}
           local-dir: ${{ steps.locate-shell.outputs.deploy_dir }}/
           server-dir: ${{ secrets.FTP_SERVER_DIR || 'www/' }}
+
+      - name: "Verificar se o site no ar recebeu esta versao"
+        run: |
+          SITE_URL="${{ secrets.SITE_URL }}"
+          SITE_URL="${SITE_URL:-https://www.lavanderiasantatereza.com.br}"
+          ESPERADA="${{ github.sha }}"
+          for i in $(seq 1 10); do
+            ATUAL=$(curl -s -H "Cache-Control: no-cache" "$SITE_URL/deploy-version.txt" || true)
+            STATUS=$(curl -s -o /dev/null -w "%{http_code}" "$SITE_URL/")
+            if [ "$ATUAL" = "$ESPERADA" ] && [ "$STATUS" = "200" ]; then
+              echo "O site no ar confirma a versao $ESPERADA (pagina inicial com status $STATUS)."
+              exit 0
+            fi
+            echo "tentativa $i: versao no ar='$ATUAL' status da pagina inicial=$STATUS"
+            sleep 15
+          done
+          echo "::error::O site no ar nao confirmou a versao nova. O envio por FTP pode ter falhado."
+          exit 1
