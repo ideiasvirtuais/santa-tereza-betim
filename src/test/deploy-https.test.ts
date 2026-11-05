@@ -1,0 +1,40 @@
+import { existsSync, readFileSync } from "node:fs";
+import path from "node:path";
+import { describe, expect, it } from "vitest";
+
+// O .htaccess servido no ar é gerado dentro da automação de deploy, então a
+// regra de HTTPS só existe se estiver no heredoc desse workflow.
+function htaccessGeradoPeloWorkflow(): string {
+  const workflowPath = path.resolve(process.cwd(), ".github/workflows/lovable-deploy.yml");
+  if (!existsSync(workflowPath)) {
+    throw new Error(`workflow de deploy nao encontrado em ${workflowPath}`);
+  }
+  const workflow = readFileSync(workflowPath, "utf8");
+  const bloco = workflow.match(/<<'HTACCESS'\n([\s\S]*?)\n\s*HTACCESS/);
+  const conteudo = bloco?.[1];
+  if (!conteudo) throw new Error("bloco de geracao do .htaccess nao encontrado no workflow");
+  return conteudo;
+}
+
+describe("Deploy: acesso HTTP virando HTTPS", () => {
+  const htaccess = htaccessGeradoPeloWorkflow();
+
+  it("redireciona http para https com 301 mantendo o endereco", () => {
+    expect(htaccess).toContain("RewriteCond %{HTTPS} !=on");
+    expect(htaccess).toContain(
+      "RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]",
+    );
+  });
+
+  it("nao redireciona de novo quando o acesso ja chega cifrado por proxy", () => {
+    expect(htaccess).toContain("RewriteCond %{HTTP:X-Forwarded-Proto} !https");
+  });
+
+  it("aplica o HTTPS antes do fallback de rotas do SPA", () => {
+    const inicioHttps = htaccess.indexOf("RewriteCond %{HTTPS} !=on");
+    const inicioFallback = htaccess.indexOf("RewriteRule ^ _shell.html [L]");
+    expect(inicioHttps).toBeGreaterThan(-1);
+    expect(inicioFallback).toBeGreaterThan(-1);
+    expect(inicioHttps).toBeLessThan(inicioFallback);
+  });
+});
