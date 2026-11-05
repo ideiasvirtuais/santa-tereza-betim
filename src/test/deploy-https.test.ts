@@ -11,8 +11,9 @@ function htaccessGeradoPeloWorkflow(): string {
   }
   const workflow = readFileSync(workflowPath, "utf8");
   const bloco = workflow.match(/<<'HTACCESS'\n([\s\S]*?)\n\s*HTACCESS/);
-  if (!bloco) throw new Error("bloco de geracao do .htaccess nao encontrado no workflow");
-  return bloco[1];
+  const conteudo = bloco?.[1];
+  if (!conteudo) throw new Error("bloco de geracao do .htaccess nao encontrado no workflow");
+  return conteudo;
 }
 
 describe("Deploy: acesso HTTP virando HTTPS", () => {
