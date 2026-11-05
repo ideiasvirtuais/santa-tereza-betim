@@ -67,6 +67,9 @@ jobs:
           </IfModule>
           HTACCESS
 
+      - name: "Gravar versao do deploy"
+        run: echo "${{ github.sha }}" > "${{ steps.locate-shell.outputs.deploy_dir }}/deploy-version.txt"
+
       - name: "Deploy para a Branch stable-website"
         uses: JamesIves/github-pages-deploy-action@v4
         with:
@@ -83,3 +86,24 @@ jobs:
           password: ${{ secrets.FTP_PASSWORD }}
           local-dir: ${{ steps.locate-shell.outputs.deploy_dir }}/
           server-dir: ${{ secrets.FTP_SERVER_DIR || 'www/' }}
+      - name: "Verificar se o site no ar recebeu esta versao"
+        env:
+          SITE_URL: ${{ secrets.SITE_URL || 'https://www.lavanderiasantatereza.com.br' }}
+        run: |
+          EXPECTED="${{ github.sha }}"
+          for i in $(seq 1 10); do
+            GOT=$(curl -fsSL -H "Cache-Control: no-cache" "$SITE_URL/deploy-version.txt?t=$(date +%s)" | tr -d '[:space:]' || true)
+            if [ "$GOT" = "$EXPECTED" ]; then
+              CODE=$(curl -s -o /dev/null -w "%{http_code}" "$SITE_URL/")
+              if [ "$CODE" = "200" ]; then
+                echo "Deploy confirmado: $SITE_URL esta com a versao $EXPECTED"
+                exit 0
+              fi
+              echo "Versao certa, mas a pagina inicial respondeu $CODE"
+            else
+              echo "Tentativa $i: site com versao '$GOT', esperado '$EXPECTED'"
+            fi
+            sleep 15
+          done
+          echo "::error::O site no ar nao confirmou a versao nova. O envio por FTP pode ter falhado."
+          exit 1
