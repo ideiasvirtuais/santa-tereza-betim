@@ -1,14 +1,15 @@
-import { readFileSync } from "node:fs";
-import { fileURLToPath } from "node:url";
+import { existsSync, readFileSync } from "node:fs";
+import path from "node:path";
 import { describe, expect, it } from "vitest";
 
 // O .htaccess servido no ar é gerado dentro da automação de deploy, então a
 // regra de HTTPS só existe se estiver no heredoc desse workflow.
 function htaccessGeradoPeloWorkflow(): string {
-  const workflow = readFileSync(
-    fileURLToPath(new URL("../../.github/workflows/lovable-deploy.yml", import.meta.url)),
-    "utf8",
-  );
+  const workflowPath = path.resolve(process.cwd(), ".github/workflows/lovable-deploy.yml");
+  if (!existsSync(workflowPath)) {
+    throw new Error(`workflow de deploy nao encontrado em ${workflowPath}`);
+  }
+  const workflow = readFileSync(workflowPath, "utf8");
   const bloco = workflow.match(/<<'HTACCESS'\n([\s\S]*?)\n\s*HTACCESS/);
   if (!bloco) throw new Error("bloco de geracao do .htaccess nao encontrado no workflow");
   return bloco[1];
