@@ -1,1 +1,0 @@
-var e=`/assets/logo-topo-CfVPPNUS.png`,t=`/assets/logo-rodape-B5BUBaCK.png`;export{e as n,t};
