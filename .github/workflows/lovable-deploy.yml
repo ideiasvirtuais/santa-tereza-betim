@@ -42,14 +42,14 @@ jobs:
       - name: "Localizar shell do TanStack Start (SPA mode)"
         id: locate-shell
         run: |
-          if [ -f dist/client/_shell.html ]; then
-            echo "deploy_dir=dist/client" >> "$GITHUB_OUTPUT"
-          elif [ -f dist/_shell.html ]; then
-            echo "deploy_dir=dist" >> "$GITHUB_OUTPUT"
-          else
-            echo "::error::_shell.html nao encontrado em dist/ ou dist/client/. Verifique se SPA mode esta habilitado em vite.config.ts: tanstackStart({ spa: { enabled: true } })"
+          SHELL_FILE=$(find dist .output -name _shell.html -not -path "*/node_modules/*" 2>/dev/null | head -n 1)
+          if [ -z "$SHELL_FILE" ]; then
+            echo "::error::_shell.html nao encontrado em dist/ ou .output/"
+            find dist .output -maxdepth 3 2>/dev/null | head -50
             exit 1
           fi
+          echo "Encontrado: $SHELL_FILE"
+          echo "deploy_dir=$(dirname "$SHELL_FILE")" >> "$GITHUB_OUTPUT"
 
       # 5.1. Gera .htaccess para hospedagens Apache (DirectoryIndex + SPA fallback)
       - name: "Gerar .htaccess para Apache"
