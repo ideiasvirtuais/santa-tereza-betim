@@ -1,25 +1,25 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import logoTopo from "@/assets/logo-topo.png.asset.json";
-import logoRodape from "@/assets/logo-rodape.png.asset.json";
-import fpt from "@/assets/cliente-fpt.png.asset.json";
-import magna from "@/assets/cliente-magna.png.asset.json";
-import manserv from "@/assets/cliente-manserv.png.asset.json";
-import mercadolivre from "@/assets/cliente-mercado-livre.png.asset.json";
-import petrobras from "@/assets/cliente-petrobras.png.asset.json";
-import stellantis from "@/assets/cliente-stellantis.png.asset.json";
-import vale from "@/assets/cliente-vale.png.asset.json";
+import logoTopo from "@/assets/logo-topo.png";
+import logoRodape from "@/assets/logo-rodape.png";
+import fpt from "@/assets/cliente-fpt.png";
+import magna from "@/assets/cliente-magna.png";
+import manserv from "@/assets/cliente-manserv.png";
+import mercadolivre from "@/assets/cliente-mercado-livre.png";
+import petrobras from "@/assets/cliente-petrobras.png";
+import stellantis from "@/assets/cliente-stellantis.png";
+import vale from "@/assets/cliente-vale.png";
 
 const IG = "https://www.instagram.com/lavanderia.santatereza/";
 const LINKTREE = "https://linktr.ee/santaterezalavanderia";
 
 const clients = [
-  { name: "FPT", img: fpt.url },
-  { name: "Magna", img: magna.url },
-  { name: "Manserv", img: manserv.url },
-  { name: "Mercado Livre", img: mercadolivre.url },
-  { name: "Petrobras", img: petrobras.url },
-  { name: "Stellantis", img: stellantis.url },
-  { name: "Vale", img: vale.url },
+  { name: "FPT", img: fpt },
+  { name: "Magna", img: magna },
+  { name: "Manserv", img: manserv },
+  { name: "Mercado Livre", img: mercadolivre },
+  { name: "Petrobras", img: petrobras },
+  { name: "Stellantis", img: stellantis },
+  { name: "Vale", img: vale },
 ];
 
 export const Route = createFileRoute("/clientes")({
@@ -42,7 +42,7 @@ function Clientes() {
       <header className="sticky top-0 z-20 border-b bg-background/90 backdrop-blur">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
           <Link to="/" aria-label="Lavanderia Santa Tereza">
-            <img src={logoTopo.url} alt="Logo Lavanderia Santa Tereza" className="h-14 w-auto" />
+            <img src={logoTopo} alt="Logo Lavanderia Santa Tereza" className="h-14 w-auto" />
           </Link>
           <nav className="hidden gap-6 text-sm font-medium md:flex">
             <a href="/#sobre" className="hover:text-primary">Sobre</a>
@@ -100,7 +100,7 @@ function Clientes() {
       </section>
 
       <footer className="bg-ink py-10 text-center text-sm text-ink-foreground">
-        <img src={logoRodape.url} alt="Logo Lavanderia Santa Tereza" className="mx-auto h-24 w-auto" />
+        <img src={logoRodape} alt="Logo Lavanderia Santa Tereza" className="mx-auto h-24 w-auto" />
         <p className="mt-6 opacity-90">© {new Date().getFullYear()} Lavanderia Santa Tereza – Betim/MG</p>
         <p className="mt-2 opacity-90">
           <a href={IG} target="_blank" rel="noopener noreferrer" className="hover:text-accent">Instagram</a>

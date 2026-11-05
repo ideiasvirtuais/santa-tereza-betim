@@ -91,3 +91,14 @@ jobs:
           folder: ${{ steps.locate-shell.outputs.deploy_dir }}
           # Opcao para limpar arquivos antigos da branch 'stable-website'
           clean: true
+      # 7. Envia o site pronto por FTP para a hospedagem (Uni5 / KingHost)
+      # Requer os segredos FTP_SERVER, FTP_USERNAME e FTP_PASSWORD no GitHub
+      # (Settings > Secrets and variables > Actions). FTP_SERVER_DIR é opcional (padrão: www/).
+      - name: "Enviar por FTP para a hospedagem"
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          local-dir: ${{ steps.locate-shell.outputs.deploy_dir }}/
+          server-dir: ${{ secrets.FTP_SERVER_DIR || 'www/' }}
