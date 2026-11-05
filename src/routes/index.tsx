@@ -18,6 +18,7 @@ import mercadolivre from "@/assets/cliente-mercado-livre.png";
 import petrobras from "@/assets/cliente-petrobras.png";
 import stellantis from "@/assets/cliente-stellantis.png";
 import vale from "@/assets/cliente-vale.png";
+import { Building2, Instagram, Leaf, Phone, Shirt, Users } from "lucide-react";
 
 const clients = [
   { name: "FPT", img: fpt },
@@ -71,12 +72,30 @@ function Index() {
             <img src={logoTopo} alt="Logo Lavanderia Santa Tereza" className="h-14 w-auto" />
           </a>
           <nav className="hidden gap-6 text-sm font-medium md:flex">
-            <a href="#sobre" className="hover:text-primary">Sobre</a>
-            <a href="#servicos" className="hover:text-primary">Serviços</a>
-            <a href="#clientes" className="hover:text-primary">Clientes</a>
-            <a href="#ambiental" className="hover:text-primary">Meio ambiente</a>
-            <a href="#instagram" className="hover:text-primary">Instagram</a>
-            <a href="#contato" className="hover:text-primary">Contato</a>
+            <a href="#sobre" className="flex items-center gap-1.5 hover:text-primary">
+              <Building2 className="h-4 w-4" aria-hidden="true" />
+              Sobre
+            </a>
+            <a href="#servicos" className="flex items-center gap-1.5 hover:text-primary">
+              <Shirt className="h-4 w-4" aria-hidden="true" />
+              Serviços
+            </a>
+            <a href="#clientes" className="flex items-center gap-1.5 hover:text-primary">
+              <Users className="h-4 w-4" aria-hidden="true" />
+              Clientes
+            </a>
+            <a href="#ambiental" className="flex items-center gap-1.5 hover:text-primary">
+              <Leaf className="h-4 w-4" aria-hidden="true" />
+              Meio ambiente
+            </a>
+            <a href="#instagram" className="flex items-center gap-1.5 hover:text-primary">
+              <Instagram className="h-4 w-4" aria-hidden="true" />
+              Instagram
+            </a>
+            <a href="#contato" className="flex items-center gap-1.5 hover:text-primary">
+              <Phone className="h-4 w-4" aria-hidden="true" />
+              Contato
+            </a>
           </nav>
           <a href="tel:+553135919289" className="rounded bg-primary px-4 py-2 text-sm font-semibold text-primary-foreground">
             (31) 3591-9289
