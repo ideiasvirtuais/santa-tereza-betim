@@ -1,16 +1,16 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import hero from "@/assets/hero.jpg";
-import logoTopo from "@/assets/logo-topo.png.asset.json";
-import logoRodape from "@/assets/logo-rodape.png.asset.json";
-import fachada from "@/assets/fachada.jpg.asset.json";
-import caminhao from "@/assets/caminhao.png.asset.json";
-import servUniformes from "@/assets/servico-uniformes-2.jpg.asset.json";
-import servCouros from "@/assets/servico-couros-2.jpg.asset.json";
-import servEpis from "@/assets/servico-epis-2.jpg.asset.json";
-import servLuvas from "@/assets/servico-luvas-2.jpg.asset.json";
-import equipe from "@/assets/equipe.jpg.asset.json";
-import reuniao from "@/assets/reuniao.jpg.asset.json";
-import material from "@/assets/reuniao-material.jpg.asset.json";
+import logoTopo from "@/assets/logo-topo.png";
+import logoRodape from "@/assets/logo-rodape.png";
+import fachada from "@/assets/fachada.jpg";
+import caminhao from "@/assets/caminhao.png";
+import servUniformes from "@/assets/servico-uniformes-2.jpg";
+import servCouros from "@/assets/servico-couros-2.jpg";
+import servEpis from "@/assets/servico-epis-2.jpg";
+import servLuvas from "@/assets/servico-luvas-2.jpg";
+import equipe from "@/assets/equipe.jpg";
+import reuniao from "@/assets/reuniao.jpg";
+import material from "@/assets/reuniao-material.jpg";
 
 const IG = "https://www.instagram.com/lavanderia.santatereza/";
 const LINKTREE = "https://linktr.ee/santaterezalavanderia";
@@ -30,10 +30,10 @@ export const Route = createFileRoute("/")({
 });
 
 const services = [
-  { t: "Uniformes", d: "Higienização e reparos de uniformes profissionais.", img: servUniformes.url },
-  { t: "Couros", d: "Limpeza e restauração de peças em couro.", img: servCouros.url },
-  { t: "EPIs e Botas", d: "Higienização segura de equipamentos de proteção.", img: servEpis.url },
-  { t: "Luvas", d: "Nosso diferencial: luvas extremamente limpas e restauradas.", img: servLuvas.url },
+  { t: "Uniformes", d: "Higienização e reparos de uniformes profissionais.", img: servUniformes },
+  { t: "Couros", d: "Limpeza e restauração de peças em couro.", img: servCouros },
+  { t: "EPIs e Botas", d: "Higienização segura de equipamentos de proteção.", img: servEpis },
+  { t: "Luvas", d: "Nosso diferencial: luvas extremamente limpas e restauradas.", img: servLuvas },
 ];
 
 const eco = [
@@ -49,7 +49,7 @@ function Index() {
       <header className="sticky top-0 z-20 border-b bg-background/90 backdrop-blur">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
           <a href="#" aria-label="Lavanderia Santa Tereza">
-            <img src={logoTopo.url} alt="Logo Lavanderia Santa Tereza" className="h-14 w-auto" />
+            <img src={logoTopo} alt="Logo Lavanderia Santa Tereza" className="h-14 w-auto" />
           </a>
           <nav className="hidden gap-6 text-sm font-medium md:flex">
             <a href="#sobre" className="hover:text-primary">Sobre</a>
@@ -91,8 +91,8 @@ function Index() {
           </p>
         </div>
         <div className="mt-12 grid items-center gap-8 md:grid-cols-[1.55fr_1fr]">
-          <img src={fachada.url} alt="Fachada da Lavanderia Santa Tereza em Betim" loading="lazy" className="w-full rounded" />
-          <img src={caminhao.url} alt="Caminhão da Lavanderia Santa Tereza" loading="lazy" className="mx-auto w-full max-w-md" />
+          <img src={fachada} alt="Fachada da Lavanderia Santa Tereza em Betim" loading="lazy" className="w-full rounded" />
+          <img src={caminhao} alt="Caminhão da Lavanderia Santa Tereza" loading="lazy" className="mx-auto w-full max-w-md" />
         </div>
         <div className="mt-16 grid gap-px overflow-hidden rounded border bg-border md:grid-cols-3">
           {[
@@ -160,9 +160,9 @@ function Index() {
           </div>
           <div className="mt-10 grid gap-4 md:grid-cols-3">
             {[
-              [equipe.url, "Equipe Lavanderia Santa Tereza"],
-              [reuniao.url, "Reunião da equipe"],
-              [material.url, "Treinamento da equipe"],
+              [equipe, "Equipe Lavanderia Santa Tereza"],
+              [reuniao, "Reunião da equipe"],
+              [material, "Treinamento da equipe"],
             ].map(([src, alt]) => (
               <a key={src} href={IG} target="_blank" rel="noopener noreferrer" className="block aspect-square overflow-hidden rounded">
                 <img src={src} alt={alt} loading="lazy" className="h-full w-full object-cover transition-transform duration-500 hover:scale-105" />
@@ -205,7 +205,7 @@ function Index() {
       </section>
 
       <footer className="bg-ink py-10 text-center text-sm text-ink-foreground">
-        <img src={logoRodape.url} alt="Logo Lavanderia Santa Tereza" className="mx-auto h-24 w-auto" />
+        <img src={logoRodape} alt="Logo Lavanderia Santa Tereza" className="mx-auto h-24 w-auto" />
         <p className="mt-6 opacity-90">© {new Date().getFullYear()} Lavanderia Santa Tereza – Betim/MG</p>
       </footer>
     </div>
